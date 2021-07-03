@@ -7,15 +7,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace Snaaake
 {
-    public enum SnakeDirection
-    {
-        Left, Right, Up, Down
-    }
+  
     class Snake
     {
         Size fieldSize;
@@ -24,13 +22,14 @@ namespace Snaaake
         private int PosY;
         private int snakeSize = 20;
         public event Action<Snake> SnakePosChanged;
-        public SnakeDirection snakeDirection { get; set; }
+        public Key SnakeDirection { get; set; }
 
         public Snake(Size s)
         {
             fieldSize = s;
             PosX = new Random().Next(0, (int)s.Width);
             PosY = new Random().Next(0, (int)s.Height);
+        
             SnakeKrodyotsa();
         }
 
@@ -40,14 +39,16 @@ namespace Snaaake
             {
                 await Task.Run(() =>
                 {
-                    if (snakeDirection == SnakeDirection.Right)
+                    if (SnakeDirection == Key.Right)
                         PosX += snakeSize;
-                    if (snakeDirection == SnakeDirection.Left)
+                    else if (SnakeDirection == Key.Left)
                         PosX -= snakeSize;
-                    if (snakeDirection == SnakeDirection.Up)
+                    else if (SnakeDirection == Key.Up)
                         PosY -= snakeSize;
-                    if (snakeDirection == SnakeDirection.Down)
+                    else if (SnakeDirection == Key.Down)
                         PosY += snakeSize;
+                    else
+                        PosX -= snakeSize;
                     Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
                     Thread.Sleep(500);
 

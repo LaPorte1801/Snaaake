@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -15,7 +16,7 @@ namespace Snaaake
         Snake snake;
         public Rectangle snakeRect;
         int snakeSize = 20;
-        public SnakeDirection direction;
+        public Key direction;
 
         public SnakePresenter(Size s)
         {
@@ -35,7 +36,7 @@ namespace Snaaake
         {
             Canvas.SetLeft(snakeRect, snake.GetSnakePosition().X - (snakeSize / 2));
             Canvas.SetTop(snakeRect, snake.GetSnakePosition().Y - (snakeSize / 2));
-            snake.snakeDirection = direction;
+            snake.SnakeDirection = direction;
         }
     }
 }
