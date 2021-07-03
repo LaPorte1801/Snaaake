@@ -30,19 +30,16 @@ namespace Snaaake
 
         public async void SnakeKrodyotsa()
         {
-            await Task.Run(() =>
+            while (PosX > 0 && PosX < fieldSize.Width && PosY > 0 && PosY < fieldSize.Height)
             {
-                while (PosX > 0 && PosX < fieldSize.Width && PosY > 0 && PosY < fieldSize.Height)
+                await Task.Run(() =>
                 {
                     PosX += snakeSize;
                     Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
                     Thread.Sleep(500);
-                    
-                }
-
-                
-            });
-            SnakePosChanged(this);
+                });
+                SnakePosChanged(this);
+            }
         }
 
         public Point GetSnakePosition()
