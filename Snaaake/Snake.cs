@@ -36,7 +36,9 @@ namespace Snaaake
                 {
                     PosX += snakeSize;
                     Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
+                    Debug.WriteLine(Thread.CurrentThread.ManagedThreadId);
                     Thread.Sleep(500);
+                    
                 });
                 SnakePosChanged(this);
             }
