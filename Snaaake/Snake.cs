@@ -41,30 +41,16 @@ namespace Snaaake
                 await Task.Run(() =>
                 {
                     if (snakeDirection == SnakeDirection.Right)
-                    {
                         PosX += snakeSize;
-                        Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
-                        Thread.Sleep(500);
-                    }
                     if (snakeDirection == SnakeDirection.Left)
-                    {
                         PosX -= snakeSize;
-                        Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
-                        Thread.Sleep(500);
-                    }
                     if (snakeDirection == SnakeDirection.Up)
-                    {
                         PosY -= snakeSize;
-                        Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
-                        Thread.Sleep(500);
-                    }
                     if (snakeDirection == SnakeDirection.Down)
-                    {
                         PosY += snakeSize;
-                        Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
-                        Thread.Sleep(500);
-                    }
-                    
+                    Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
+                    Thread.Sleep(500);
+
                 });
                 SnakePosChanged(this);
             }
