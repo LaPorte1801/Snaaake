@@ -30,10 +30,10 @@ namespace Snaaake
             snake.SnakePosChanged += Snake_SnakePosChanged;
         }
 
-        private void Snake_SnakePosChanged(Point pos)
+        private void Snake_SnakePosChanged(Snake snake)
         {
-            Canvas.SetLeft(snakeRect, pos.X - (snakeSize / 2));
-            Canvas.SetTop(snakeRect, pos.Y - (snakeSize / 2));
+            Canvas.SetLeft(snakeRect, snake.GetSnakePosition().X - (snakeSize / 2));
+            Canvas.SetTop(snakeRect, snake.GetSnakePosition().Y - (snakeSize / 2));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Snaaake
         private int PosX;
         private int PosY;
         private int snakeSize = 20;
-        public event Action<Point> SnakePosChanged;
+        public event Action<Snake> SnakePosChanged;
         public Snake(Size s)
         {
             fieldSize = s;
@@ -30,18 +30,19 @@ namespace Snaaake
 
         public async void SnakeKrodyotsa()
         {
-            while (PosX > 0 && PosX < fieldSize.Width && PosY > 0 && PosY < fieldSize.Height)
+            await Task.Run(() =>
             {
-                await Task.Run(() =>
+                while (PosX > 0 && PosX < fieldSize.Width && PosY > 0 && PosY < fieldSize.Height)
                 {
                     PosX += snakeSize;
-                    SnakePosChanged(GetSnakePosition());
                     Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
                     Thread.Sleep(500);
                     
-                });
+                }
+
                 
-            }
+            });
+            SnakePosChanged(this);
         }
 
         public Point GetSnakePosition()
