@@ -37,5 +37,12 @@ namespace Snaaake
             snake = new SnakePresenter(gameCanvas.RenderSize);
             gameCanvas.Children.Add(snake.snakeRect);
         }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            snake.direction = e.Key;
+          
+        }
     }
 }
