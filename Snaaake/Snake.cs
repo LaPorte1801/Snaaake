@@ -12,6 +12,10 @@ using System.Windows.Shapes;
 
 namespace Snaaake
 {
+    public enum SnakeDirection
+    {
+        Left, Right, Up, Down
+    }
     class Snake
     {
         Size fieldSize;
@@ -20,6 +24,8 @@ namespace Snaaake
         private int PosY;
         private int snakeSize = 20;
         public event Action<Snake> SnakePosChanged;
+        public SnakeDirection snakeDirection { get; set; }
+
         public Snake(Size s)
         {
             fieldSize = s;
@@ -34,9 +40,31 @@ namespace Snaaake
             {
                 await Task.Run(() =>
                 {
-                    PosX += snakeSize;
-                    Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
-                    Thread.Sleep(500);
+                    if (snakeDirection == SnakeDirection.Right)
+                    {
+                        PosX += snakeSize;
+                        Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
+                        Thread.Sleep(500);
+                    }
+                    if (snakeDirection == SnakeDirection.Left)
+                    {
+                        PosX -= snakeSize;
+                        Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
+                        Thread.Sleep(500);
+                    }
+                    if (snakeDirection == SnakeDirection.Up)
+                    {
+                        PosY -= snakeSize;
+                        Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
+                        Thread.Sleep(500);
+                    }
+                    if (snakeDirection == SnakeDirection.Down)
+                    {
+                        PosY += snakeSize;
+                        Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
+                        Thread.Sleep(500);
+                    }
+                    
                 });
                 SnakePosChanged(this);
             }
