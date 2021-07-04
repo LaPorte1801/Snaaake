@@ -27,8 +27,8 @@ namespace Snaaake
         public Snake(Size s)
         {
             fieldSize = s;
-            PosX = new Random().Next(0, (int)s.Width);
-            PosY = new Random().Next(0, (int)s.Height);
+            PosX = 20 * new Random().Next(1, (int)s.Width / 100);
+            PosY = 20 * new Random().Next(1, (int)s.Height / 100);
         
             SnakeKrodyotsa();
         }
@@ -41,17 +41,14 @@ namespace Snaaake
                 {
                     if (SnakeDirection == Key.Right)
                         PosX += snakeSize;
-                    else if (SnakeDirection == Key.Left)
+                    if (SnakeDirection == Key.Left)
                         PosX -= snakeSize;
-                    else if (SnakeDirection == Key.Up)
+                    if (SnakeDirection == Key.Up)
                         PosY -= snakeSize;
-                    else if (SnakeDirection == Key.Down)
+                    if (SnakeDirection == Key.Down)
                         PosY += snakeSize;
-                    else
-                        PosX -= snakeSize;
                     Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
                     Thread.Sleep(500);
-
                 });
                 SnakePosChanged(this);
             }
