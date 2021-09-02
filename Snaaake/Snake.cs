@@ -22,6 +22,7 @@ namespace Snaaake
         private int PosY;
         private int snakeSize = 20;
         public event Action<Snake> SnakePosChanged;
+        public int Score { get; private set; }
         public Key SnakeDirection { get; set; }
 
         public Snake(Size s)
@@ -35,8 +36,12 @@ namespace Snaaake
 
         public async void SnakeKrodyotsa()
         {
+            Point eatPosition = Eat.GetPosition(fieldSize);
+
             while (PosX > 0 && PosX < fieldSize.Width && PosY > 0 && PosY < fieldSize.Height)
             {
+
+
                 await Task.Run(() =>
                 {
                     if (SnakeDirection == Key.Right)
@@ -49,6 +54,8 @@ namespace Snaaake
                         PosY += snakeSize;
                     Debug.WriteLine(GetSnakePosition().X + "; " + GetSnakePosition().Y);
                     Thread.Sleep(500);
+
+
                 });
                 SnakePosChanged(this);
             }
